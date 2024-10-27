@@ -1,3 +1,4 @@
+/*
 struct User {
     active: bool,
     username: String,
@@ -48,6 +49,8 @@ fn main() {
 
     sq.change_width(20);
     sq.whats_my_area();
+
+    lifetimes();
 }
 
 fn build_user(username: String) -> User {
@@ -56,4 +59,73 @@ fn build_user(username: String) -> User {
         active: true,
         sign_in_count: 1,
     }
+}
+ */
+
+/*
+// Lifetimes
+
+struct MyString<'a> {
+    text: &'a str,
+}
+
+fn main() {
+
+    let str1 = String::from("This is my string");
+    let x = MyString{ text: str1.as_str() };
+    let s = &'static str = "This is a static string";
+
+    let r;
+    {
+        let x = 5;
+        r = &x
+    }
+
+    println!("{}", r);
+}
+
+fn example<'a, 'b>(x: &'a str, y: &'b str) -> &'a str {
+    x
+}
+*/
+
+// Assignment
+struct Car {
+    mpg: u32,
+    color: String,
+    top_speed: u32,
+}
+
+impl Car {
+    fn set_mpg(&mut self, new_mpg: u32) {
+        self.mpg = new_mpg;
+    }
+
+    fn set_color(&mut self, new_color: String) {
+        self.color = new_color;
+    }
+
+    fn set_top_speed(&mut self, new_top_speed: u32) {
+        self.top_speed = new_top_speed;
+    }
+}
+
+fn main() {
+    let mut my_car = Car {
+        mpg: 25,
+        color: String::from("Red"),
+        top_speed: 120,
+    };
+
+    println!("My car has an mpg of: {}", my_car.mpg);
+    println!("My car is: {}", my_car.color);
+    println!("My car has a top speed of: {}", my_car.top_speed);
+
+    my_car.set_mpg(30);
+    my_car.set_color(String::from("Blue"));
+    my_car.set_top_speed(130);
+
+    println!("My car now an mpg of: {}", my_car.mpg);
+    println!("My car is now: {}", my_car.color);
+    println!("My car now has a top speed of: {}", my_car.top_speed);
 }
